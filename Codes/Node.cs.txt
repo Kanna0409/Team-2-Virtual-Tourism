@@ -1,0 +1,13 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class DirectionalNeighbor{
+    public string direction; 
+    public GameObject neighborObject;
+}
+
+public class Node : MonoBehaviour{
+    public int index;
+    public List<DirectionalNeighbor> directionalNeighbors;
+}

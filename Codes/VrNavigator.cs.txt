@@ -1,0 +1,51 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+public class VRNavigator : MonoBehaviour
+{
+    public Graph_datastructure graph;       
+    public int currentIndex = 0;            
+    public Transform xrrig;                  
+    void Start()
+    {
+        SetActiveSphere(currentIndex);
+    }
+    public void MoveInDirection(string direction){
+        direction = direction.ToLower();
+        if (graph.directionalAdjList[currentIndex].ContainsKey(direction)){
+            int nextIndex = graph.directionalAdjList[currentIndex][direction];
+            SetActiveSphere(nextIndex);
+        }
+        else{
+            Debug.LogWarning($"No neighbor in direction '{direction}' from sphere {currentIndex}");
+        }
+    }
+    void Update()
+    {
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Arrow_Trigger trigger = hit.collider.GetComponent<Arrow_Trigger>();
+                if (trigger != null && trigger.navigator != null)
+                {
+                    trigger.navigator.MoveInDirection(trigger.direction);
+                }
+            }
+        }
+    }
+
+    void SetActiveSphere(int index){
+        foreach (GameObject sphere in graph.spheres)
+        {
+            sphere.SetActive(false);
+        }
+        GameObject targetSphere = graph.spheres[index];
+        targetSphere.SetActive(true);
+        if (xrrig!=null){
+            xrrig.position = targetSphere.transform.position;
+        }
+        currentIndex = index;
+    }
+}
+
