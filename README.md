@@ -6,10 +6,10 @@ Team-2-Virtual-Tourism/
 
 │── Codes/
 
-│   ├── ArrowTrigger.cs         # Handles arrow triggers for directional movement
+├── Arrow_Trigger.cs # Triggers the arrow to enable directional movement
 
-│   ├── GraphDataStructure.cs   # Manages all spheres using a graph data structure
+├── Graph_DataStructure.cs # Organizes all spheres into a graph data structure
 
-│   ├── Node.cs                 # Defines properties of a 360° photo as a graph node
+├── Node.cs # Defines the properties of a spherical 360° photo as a graph node
 
-│   └── VrNavigator.cs          # Teleports user to a new sphere when an arrow is clicked
+└── VrNavigator.cs # Teleports/navigates the user to a new sphere when an arrow is clicked
