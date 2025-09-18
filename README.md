@@ -1,6 +1,7 @@
 # Team-2-Virtual-Tourism
 
 ## Project Structure
+
 Team-2-Virtual-Tourism/
 │── Codes/
 │   ├── ArrowTrigger.cs         # Handles arrow triggers for directional movement
